@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity | Mart</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="icon" href="/Assets/Image/Black & White Circle Badge Minimalist Initial Football Club Logo.png">
+    <link rel="stylesheet" href="/HTML/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <style>
+        
+
+    </style>
+</head>
+
+<body >
+    <div class="header1" data-aos="fade-down" data-aos-delay="300" data-aos-duration="1200">
+        <h1 class="headline"><img width="50px" style="margin-top: 5px;" src="/Assets/Image/infinity-logo.png" alt=""><span>Infinity</span> | Mart</h1>
+        <nav>
+            <div class="menuToggle"  onclick="this.classList.toggle('open'); document.querySelector('nav').classList.toggle('active');">
+                <div class="bar"></div>
+            </div>
+            <ul class="navbar" style="margin-top: 5px;">
+                <li><a href="index2.html" class="active">Home</a></li>
+                
+                <li><a href="product.html">Products <i class='bx bx-chevron-down'></i></a>
+                    <ul>
+                        <li><a href="#food">Food</a></li>
+                        <li><a href="#drink">Drink</a></li>
+                        <li><a href="#perfume">Perfume</a></li>
+                        <li><a href="#speaker">Speaker</a></li>
+                        <li><a href="#computer">Computer</a></li>
+                        <li><a href="#phone">Phone</a></li>
+                    </ul>
+                   
+                </li>
+                <li><a href="#about">About</a></li>
+                <li><a href="contect.html">Contact</a></li>
+                <div class="head3">
+                    <div class="lnag">
+                        <a href="#">KH</a> | 
+                        <a href="index2.html">EN</a>
+                    </div>
+                    <!-- <div class="in-out">
+                        <a href="login.html">Login</a> / 
+                        <a href="register.html">Register</a>
+                    </div> -->
+            </div>
+            </ul>
+            
+            
+        </nav>
+    </div>
+    <div class="pro" data-aos="fade-right" data-aos-delay="300" data-aos-duration="1200">
+        <div class="link" >
+            <a href="#food">Food</a>
+            <a href="#drink">Drink</a>
+            <a href="#perfume">Perfume</a>
+            <a href="#speaker">Speaker</a>
+            <a href="#computer">Computer</a>
+            <a href="#phone">Phone</a>
+        </div>
+    </div>
+    <div class="mss">
+        <a href="#" onclick="openCart()"><i class='bx bx-cart'></i><span class="cart-count" id="cartCount">0</span></a>
+        <a href=""><i class='bx bx-message-rounded'></i></a>
+    </div>
+    <div class="home-top" >
+        <a id="home-top"></a>
+    </div>
+    <div class="pro-1" data-aos="fade-left" data-aos-delay="300" data-aos-duration="1200">
+        <div class="link">
+                <a href="https://web.facebook.com/Thean7IsYourGod"><i class='bx bxl-facebook'></i></a>
+                <a href="https://www.instagram.com/theanisyourgod?igsh=ajR4b2xsZDNqcXEw"><i class='bx bxl-instagram'></i></a>
+                <a href="https://x.com/Vithean37763"><i class='bx bx-x'></i></a>
+                <a href="https://t.me/theavithean"><i class="bx bxl-telegram"></i></a>
+        </div>
+    </div>
+    
+    <div class="qr-modal" id="qrModal">
+        <div class="qr-content">
+            <h3>Complete Your Payment</h3>
+            <p>Scan the QR code below to pay</p>
+            <div class="qr-code" id="qrCode">
+                <!-- QR Code will be generated here -->
+                <div style="text-align: center;">
+                    <div style="font-size: 48px; margin-bottom: 10px;">
+                        <img src="/Assets/Image/Qraba.jpg" alt="">
+                    </div>
+                    <div>QR Code Placeholder</div>
+                </div>
+            </div>
+            <div class="qr-instructions">
+                <h4>How to pay:</h4>
+                <ol>
+                    <li>Open your mobile banking app</li>
+                    <li>Tap on 'Scan QR Code'</li>
+                    <li>Point your camera at the QR code</li>
+                    <li>Enter the amount: $<span id="paymentAmount">0</span></li>
+                    <li>Confirm the payment</li>
+                </ol>
+            </div>
+            <div class="payment-success" id="paymentSuccess">
+                <p><strong>Payment Successful!</strong> Thank you for your purchase.</p>
+            </div>
+            <button class="close-qr" onclick="closeQRCode()">Close</button>
+            <button class="btn-checkout" onclick="simulatePayment()" style="margin-top: 10px;">Simulate Payment </button>
+        </div>
+    </div>
+    <!-- <div class="home-top" >
+        <a href=""></a>
+    </div> -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <img width="50px" src="/Assets/Image/infinity-logo.png" alt="">
+            <h3> Your Cart</h3>
+            <button class="close-cart" onclick="closeCart()">
+                <i class='bx bx-x'></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total: $<span id="cartTotal">0</span></span>
+            </div>
+            <button class="btn-checkout" onclick="showQRCode()">Checkout</button>
+        </div>
+    </div>
+    <section id="home">
+        <div class="container" id="container">
+            <div class="banner" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-delay="300">
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="6" aria-label="Slide 7"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="7" aria-label="Slide 8"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="8" aria-label="Slide 9"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="9" aria-label="Slide 10"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item ">
+                        <img src="/Assets/Image/jbl-banner.png" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                        <img src="/Assets/Image/1.png" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item active">
+                        <img src="/Assets/Image/laptop-banner-.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                        <img src="/Assets/Image/macbanner.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                        <img src="/Assets/Image/Orange and Black Modern Burger Restaurant Promo Banner.png" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                        <img src="/Assets/Image/s25-ultra.png" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                        <img src="/Assets/Image/bannerPerfume.png" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                        <img src="/Assets/Image/banner-home.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                        <img src="/Assets/Image/banner17.png" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                        <img src="/Assets/Image/banner-amm copy.png" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            <div class="home-3" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-delay="300">
+                <div class="home-1" >
+                    <div class="scroll-track">
+                        <div class="box-home">
+                            <img src="/Assets/Image/food-home.png" title="Food" alt="">
+                            <h3>Food</h3>
+                            <button class="btn_5" onclick="window.location.href='#food'">Shop Now</button>
+                        </div>
+                        <div class="box-home">
+                            <img src="/Assets/Image/cold-drinks-images-png-18.png" alt="">
+                            <h3>Drink</h3>
+                            <button class="btn_5" onclick="window.location.href='#drink'">Shop Now</button>
+                        </div>
+                        <div class="box-home">
+                            <img src="/Assets/Image/perfume.jpg" alt="">
+                            <h3>Perfume</h3>
+                            <button class="btn_5"  onclick="window.location.href='#perfume'">Shop Now</button>
+                        </div>
+                        <div class="box-home">
+                            <img src="/Assets/Image/audio_speakers_PNG11152.png" alt="">
+                            <h3>Speaker</h3>
+                            <button class="btn_5"  onclick="window.location.href='#speaker'">Shop Now</button>
+                        </div>
+                        <div class="box-home">
+                            <img src="/Assets/Image/mbp14-m4-2024.png" alt="">
+                            <h3>Laptop</h3>
+                            <button class="btn_5"  onclick="window.location.href='#laptop'">Shop Now</button>
+                        </div>
+                        <div class="box-home">
+                            <img src="/Assets/Image/iphone-17-pro-max-2-tb-orange-now-1.png" alt="">
+                            <h3>Phone</h3>
+                            <button class="btn_5"  onclick="window.location.href='#phone'">Shop Now</button>
+                        </div>
+
+                        <!-- Duplicate set for infinite scroll -->
+                        <div class="box-home">
+                            <img src="/Assets/Image/food-home.png" title="Food" alt="">
+                            <h3>Food</h3>
+                            <button class="btn_5" onclick="window.location.href='#food'">Shop Now</button>
+                        </div>
+                        <div class="box-home">
+                            <img src="/Assets/Image/cold-drinks-images-png-18.png" alt="">
+                            <h3>Drink</h3>
+                            <button class="btn_5" onclick="window.location.href='#drink'">Shop Now</button>
+                        </div>
+                        <div class="box-home">
+                            <img src="/Assets/Image/perfume.jpg" alt="">
+                            <h3>Perfume</h3>
+                            <button class="btn_5" onclick="window.location.href='#perfume'">Shop Now</button>
+                        </div>
+                        <div class="box-home">
+                            <img src="/Assets/Image/audio_speakers_PNG11152.png" alt="">
+                            <h3>Speaker</h3>
+                            <button class="btn_5" onclick="window.location.href='#speaker'">Shop Now</button>
+                        </div>
+                        <div class="box-home">
+                            <img src="/Assets/Image/mbp14-m4-2024.png" alt="">
+                            <h3>Laptop</h3>
+                            <button class="btn_5" onclick="window.location.href='#laptop'">Shop Now</button>
+                        </div>
+                        <div class="box-home">
+                            <img src="/Assets/Image/iphone-17-pro-max-2-tb-orange-now-1.png" alt="">
+                            <h3>Phone</h3>
+                            <button class="btn_5" onclick="window.location.href='#phone'">Shop Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="top" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-delay="300">
+        <a href="index2.html" target="_top"><i class='bx bx-up-arrow-alt'></i></a>
+    </div>
+    <section id="food">
+        <div class="product-all" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-delay="200">
+            <div class="name-more">
+                <h2 id="food">Food</h2>
+                <a href="product.html#food">See More</a>
+            </div>
+            <div class="product-one">
+                <div class="product-box">
+                    <img src="/Assets/Image/burger.png" alt="">
+                    <div class="product-txt">
+                        <h3>Pig Burger</h3>
+                        <p><em>$4</em> $3</p>
+                        <button class="btn_5" onclick="addToCart('Burger Beef', 3, '/Assets/Image/burger.png')">
+                            <i class='bx bx-cart'></i> 
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/pizza.png" alt="">
+                    <div class="product-txt">
+                        <h3>Pizza</h3>
+                        <p><em>$25</em> $23</p>
+                        <button class="btn_5" onclick="addToCart('Pizza',23,'/Assets/Image/pizza.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/steak.png" alt="">
+                    <div class="product-txt">
+                        <h3>Steak</h3>
+                        <p><em>$34</em> $23</p>
+                        <button class="btn_5" onclick="addToCart('Steak',23,'/Assets/Image/steak.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/1BreadC.png" alt="">
+                    <div class="product-txt">
+                        <h3>Bread Chocolate</h3>
+                        <p><em>$4</em> $3</p>
+                        <button class="btn_5" onclick="addToCart('Bread Chocolate',3,'/Assets/Image/1BreadC.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/2DriedBanana.png" alt="">
+                    <div class="product-txt">
+                        <h3>Dried Banana</h3>
+                        <p><em>$5</em> $3</p>
+                        <button class="btn_5" onclick="addToCart('Dried Banana',3,'/Assets/Image/2DriedBanana.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/1domnabsvay.png" alt="">
+                    <div class="product-txt">
+                        <h3>Dom Nab Svay</h3>
+                        <p><em>$5</em> $3</p>
+                        <button class="btn_5" onclick="addToCart('Dom Nab Svay',3,'/Assets/Image/1domnabsvay.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/1FrutatiB.png" alt="">
+                    <div class="product-txt">
+                        <h3>Frutati</h3>
+                        <p><em>$4</em> $3</p>
+                        <button class="btn_5" onclick="addToCart('Frutati',3,'/Assets/Image/1FrutatiB.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/5Special spicy strip.png" alt="">
+                    <div class="product-txt">
+                        <h3>Special spicy</h3>
+                        <p><em>$25</em> $23</p>
+                        <button class="btn_5" onclick="addToCart('Special spicy',23,'/Assets/Image/5Special spicy strip.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/4Potatolong.png" alt="">
+                    <div class="product-txt">
+                        <h3>Potato</h3>
+                        <p><em>$4</em> $3</p>
+                        <button class="btn_5" onclick="addToCart('Potato',3,'/Assets/Image/4Potatolong.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/pineaple.png" alt="">
+                    <div class="product-txt">
+                        <h3>Pineaple</h3>
+                        <p><em>$25</em> $23</p>
+                        <button class="btn_5" onclick="addToCart('Pineaple',23,'/Assets/Image/pineaple.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/21mocatikafe.png" alt="">
+                    <div class="product-txt">
+                        <h3>Mocati Coffee</h3>
+                        <p><em>$4</em> $3</p>
+                        <button class="btn_5" onclick="addToCart('Mocati Coffee',3,'/Assets/Image/21mocatikafe.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/3SeasameCrisp.png" alt="">
+                    <div class="product-txt">
+                        <h3>Seasame Crisp</h3>
+                        <p><em>$25</em> $23</p>
+                        <button class="btn_5" onclick="addToCart('Seasame Crisp',23,'/Assets/Image/3SeasameCrisp.png')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="drink">
+        <div class="product-all" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-delay="200">
+            <div class="name-more">
+                <h2 id="drink">Drink</h2>
+                <a href="product.html#drink">See More</a>
+            </div>
+            <div class="product-one">
+                <div class="product-box">
+                    <img src="/Assets/Image/1kirisur cream.png" alt="">
+                    <div class="product-txt">
+                        <h3>kirisur Cream</h3>
+                        <p><em>$4</em> $3</p>
+                        <button  class="btn_5" onclick="addToCart('kirisur Cream',3,'/Assets/Image/1kirisur cream.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/2sting yellow.png" alt="">
+                    <div class="product-txt">
+                        <h3>Sting</h3>
+                        <p><em>$2</em> $1</p>
+                        <button class="btn_5" onclick="addToCart('Sting',1,'/Assets/Image/2sting yellow.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/3coca.png" alt="">
+                    <div class="product-txt">
+                        <h3>Coke</h3>
+                        <p><em>$4</em> $1</p>
+                        <button class="btn_5" onclick="addToCart('Coke',1,'/Assets/Image/3coca.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/3wurk.png" alt="">
+                    <div class="product-txt">
+                        <h3>Wurk</h3>
+                        <p><em>$2</em> $1</p>
+                        <button class="btn_5" onclick="addToCart('Wurk',1,'/Assets/Image/3wurk.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/4CambodiaB.png" alt="">
+                    <div class="product-txt">
+                        <h3>Cambodia</h3>
+                        <p><em>$4</em> $2</p>
+                        <button class="btn_5" onclick="addToCart('Cambodia',2,'/Assets/Image/4CambodiaB.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/4Vida.png" alt="">
+                    <div class="product-txt">
+                        <h3>Pro Vida</h3>
+                        <p><em>$2</em> $1</p>
+                        <button class="btn_5" onclick="addToCart('Pro Vida',1,'/Assets/Image/4Vida.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/fanta-purple.png" alt="">
+                    <div class="product-txt">
+                        <h3>Fanta</h3>
+                        <p><em>$3</em> $1</p>
+                        <button class="btn_5" onclick="addToCart('Fanta',1,'/Assets/Image/fanta-purple.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/ize.png" alt="">
+                    <div class="product-txt">
+                        <h3>Ize Lemon</h3>
+                        <p><em>$2</em> $1</p>
+                        <button class="btn_5" onclick="addToCart('Ize Lemon',1,'/Assets/Image/ize.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/2sting.png" alt="">
+                    <div class="product-txt">
+                        <h3>Sting</h3>
+                        <p><em>$2</em> $1</p>
+                        <button class="btn_5" onclick="addToCart('Sting',1,'/Assets/Image/2sting.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/4vital.png" alt="">
+                    <div class="product-txt">
+                        <h3>Vital</h3>
+                        <p><em>$2</em> $0.50</p>
+                        <button class="btn_5" onclick="addToCart('Vital',0.5,'/Assets/Image/4vital.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/1kirisurchoco.png" alt="">
+                    <div class="product-txt">
+                        <h3>kirisur chocolate</h3>
+                        <p><em>$24</em> $13</p>
+                        <button class="btn_5" onclick="addToCart('Kirisur Cream',23,'/Assets/Image/1kirisurchoco.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/1Kirisur.png" alt="">
+                    <div class="product-txt">
+                        <h3>Kirisur</h3>
+                        <p><em>$15</em> 10</p>
+                        <button class="btn_5" onclick="addToCart('Kirisur',10,'/Assets/Image/1Kirisur.png')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="perfume">
+        <div class="product-all" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-delay="200">
+            <div class="name-more">
+                <h2 id="perfume">Perfume</h2>
+                <a href="product.html#perfume">See More</a>
+            </div>
+            <div class="product-one">
+                <div class="product-box">
+                    <img src="/Assets/Image/jpg-perfume.png" alt="">
+                    <div class="product-txt">
+                        <h3>Le Male Elixir</h3>
+                        <p><em>$134</em> $123</p>
+                        <button class="btn_5" onclick="addToCart('Le Male Elixir',123,'/Assets/Image/jpg-perfume.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/jean-paul-gaultier-le-beau-le-parfum.jpg" alt="">
+                    <div class="product-txt">
+                        <h3>LE BEAU LE</h3>
+                        <p><em>$25</em> $23</p>
+                        <button class="btn_5" onclick="addToCart('Le Beau Le',130,'/Assets/Image/jean-paul-gaultier-le-beau-le-parfum.jpg')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/la-male.png" alt="">
+                    <div class="product-txt">
+                        <h3>Le Male</h3>
+                        <p><em>$104</em> $93</p>
+                        <button class="btn_5" onclick="addToCart('Le Male',93,'/Assets/Image/la-male.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/avg.png" alt="">
+                    <div class="product-txt">
+                        <h3>Sauvage Eau</h3>
+                        <p><em>$125</em> $123</p>
+                        <button class="btn_5" onclick="addToCart('Sauvage Eau',123,'/Assets/Image/avg.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/stronger-with-you.jpg" alt="">
+                    <div class="product-txt">
+                        <h3>Stronger W U</h3>
+                        <p><em>$125</em> $115</p>
+                        <button class="btn_5" onclick="(addToCart('Stronger with u',115,'/Assets/Image/stronger-with-you.jpg'))">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/giorgio-armani-emporio-armani-stronger-with-you-absolutly-for-him-edP-for-men-eau-dE-parfum-Branded-Original-fragrance-Perfume-in-Sri-Lanka-best-authentic-fragrance-store-in-sri-lanka.jpg" alt="">
+                    <div class="product-txt">
+                        <h3>Stronger W U</h3>
+                        <p><em>$25</em> $23</p>
+                        <button class="btn_5" onclick="(addToCart('Stronger with u',115,'/Assets/Image/giorgio-armani-emporio-armani-stronger-with-you-absolutly-for-him-edP-for-men-eau-dE-parfum-Branded-Original-fragrance-Perfume-in-Sri-Lanka-best-authentic-fragrance-store-in-sri-lanka.jpg'))">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/b83417-y-eau-de-parfum-intense-yves-saint-laurent.png" alt="">
+                    <div class="product-txt">
+                        <h3>YSL</h3>
+                        <p><em>$115</em> $113</p>
+                        <button class="btn_5" onclick="addToCart('YSL',113,'/Assets/Image/b83417-y-eau-de-parfum-intense-yves-saint-laurent.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/valemtio.png" alt="">
+                    <div class="product-txt">
+                        <h3>Valentino</h3>
+                        <p><em>$125</em> $123</p>
+                        <button class="btn_5" onclick="addToCart('Valentino',123,'/Assets/Image/valemtio.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/good-girl.png" alt="">
+                    <div class="product-txt">
+                        <h3>Blush Eau De</h3>
+                        <p><em>$140</em> $130</p>
+                        <button class="btn_5" onclick="addToCart('Blush Eau De',130,'/Assets/Image/good-girl.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/sc.jpg" alt="">
+                    <div class="product-txt">
+                        <h3>Scandal EDP</h3>
+                        <p><em>$125</em> $123</p>
+                        <button class="btn_5" onclick="addToCart('Scandal EDP',123,'/Assets/Image/sc.jpg')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/burberry-her-eau-de-parfum.png" alt="">
+                    <div class="product-txt">
+                        <h3>Burberry Her</h3>
+                        <p><em>$145</em> $135</p>
+                        <button class="btn_5" onclick="addToCart('Burberry Her',135,'/Assets/Image/burberry-her-eau-de-parfum.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/cr7.jpg" alt="">
+                    <div class="product-txt">
+                        <h3>CR7</h3>
+                        <p><em>$145</em> $140</p>
+                        <button class="btn_5" onclick="addToCart('CR7',140,'/Assets/Image/cr7.jpg')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="speaker">
+        <div class="product-all" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-delay="200">
+            <div class="name-more">
+                <h2 id="speaker">Speakers</h2>
+                <a href="products.html#speaker">See More</a>
+            </div>
+            <div class="product-one">
+                <div class="product-box">
+                    <img src="/Assets/Image/jbl-ex.ng.jpg" alt="">
+                    <div class="product-txt">
+                        <h3>Xtreme 3</h3>
+                        <p><em>$240</em> $230</p>
+                        <button class="btn_5" onclick="addToCart('Xtreme 3',230,'/Assets/Image/jbl-ex.ng.jpg')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/JBL_Flip_7_Blue_Box_Image_1605x1605px.png" alt="">
+                    <div class="product-txt">
+                        <h3>JBL Flip 7</h3>
+                        <p><em>$125</em> $95</p>
+                        <button class="btn_5" onclick="addToCart('JBL Flip 7',95,'/Assets/Image/JBL_Flip_7_Blue_Box_Image_1605x1605px.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/xdobo-king-max-speaker-140w-blue-600x600.png" alt="">
+                    <div class="product-txt">
+                        <h3>King Max</h3>
+                        <p><em>$140</em> $130</p>
+                        <button class="btn_5" onclick="addToCart('Xdobo King Max',130,'/Assets/Image/xdobo-king-max-speaker-140w-blue-600x600.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/bose.png" alt="">
+                    <div class="product-txt">
+                        <h3>Bose In Wall</h3>
+                        <p><em>$175</em> $150</p>
+                        <button class="btn_5" onclick="addToCart('Bose In Wall',150,'/Assets/Image/bose.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/marshall_audio_1002481_acton_ii_60w_wireless_1445067.jpg" alt="">
+                    <div class="product-txt">
+                        <h3>Marshall</h3>
+                        <p><em>$240</em> $235</p>
+                        <button class="btn_5" onclick="addToCart('Marshall',235,'/Assets/Image/marshall_audio_1002481_acton_ii_60w_wireless_1445067.jpg')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/SRS-XB501G_main_blk-Large-e1535660732314-scaled.jpg" alt="">
+                    <div class="product-txt">
+                        <h3>SONY</h3>
+                        <p><em>$125</em> $123</p>
+                        <button class="btn_5" onclick="addToCart('SONY',123,'/Assets/Image/SRS-XB501G_main_blk-Large-e1535660732314-scaled.jpg')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/audio1.png" alt="">
+                    <div class="product-txt">
+                        <h3>Sound System</h3>
+                        <p><em>$140</em> $130</p>
+                        <button class="btn_5" onclick="addToCart('Sound',130,'/Assets/Image/audio1.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/Audioengine.jpg" alt="">
+                    <div class="product-txt">
+                        <h3>Audioengine</h3>
+                        <p><em>$125</em> $123</p>
+                        <button class="btn_5" onclick="addToCart('Audioengine',123,'/Assets/Image/Audioengine.jpg')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/amazon-speaker.png" alt="">
+                    <div class="product-txt">
+                        <h3>Amazon</h3>
+                        <p><em>$140</em> $135</p>
+                        <button class="btn_5" onclick="addToCart('Amazon Sound',135,'/Assets/Image/amazon-speaker.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/desk-top.png" alt="">
+                    <div class="product-txt">
+                        <h3>Desktop SD</h3>
+                        <p><em>$125</em> $123</p>
+                        <button class="btn_5" onclick="addToCart('Desktop SD',123,'/Assets/Image/desk-top.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/best-computer-speakers-with-subwoofer-under-100-2015.jpg" alt="">
+                    <div class="product-txt">
+                        <h3>Creative</h3>
+                        <p><em>$4</em> $3</p>
+                        <button class="btn_5" onclick="addToCart('Creative',140,'/Assets/Image/best-computer-speakers-with-subwoofer-under-100-2015.jpg')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/logitch.jpg" alt="">
+                    <div class="product-txt">
+                        <h3>Logitch</h3>
+                        <p><em>$155</em> $143</p>
+                        <button class="btn_5" onclick="addToCart('Logitch',143,'/Assets/Image/logitch.jpg')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="computer">
+        <div class="product-all" id="laptop" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-delay="200">
+            <div class="name-more">
+                <h2 >Computer</h2>
+                <a href="#computer">See More</a>
+            </div>
+            <div class="product-one">
+                <div class="product-box">
+                    <img src="/Assets/Image/mbp14-m4-2024.png" alt="">
+                    <div class="product-txt">
+                        <h3>Macbook M4</h3>
+                        <p><em>$2799</em> $2764</p>
+                        <button class="btn_5" onclick="addToCart('Macbook M4',2764,'/Assets/Image/mbp14-m4-2024.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/rog18.png" alt="">
+                    <div class="product-txt">
+                        <h3>ROG G18</h3>
+                        <p><em>$2225</em> $2199</p>
+                        <button class="btn_5" onclick="addToCart('ROG G18',2199,'/Assets/Image/rog18.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/cyborg.png" alt="">
+                    <div class="product-txt">
+                        <h3>MSI Cyborg</h3>
+                        <p><em>$1799</em> $1699</p>
+                        <button class="btn_5" onclick="addToCart('MSI Cyborg',1699,'/Assets/Image/cyborg.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/legion.jpg" alt="">
+                    <div class="product-txt">
+                        <h3>Lenovo</h3>
+                        <p><em>$1175</em> $1123</p>
+                        <button class="btn_5" onclick="addToCart('Lenovo',1123,'/Assets/Image/legion.jpg')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/vivobook.png" alt="">
+                    <div class="product-txt">
+                        <h3>Vivobook</h3>
+                        <p><em>$999</em> $899</p>
+                        <button class="btn_5" onclick="addToCart('Vivobook',899,'/Assets/Image/vivobook.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/acer.jpg" alt="">
+                    <div class="product-txt">
+                        <h3>Acer</h3>
+                        <p><em>$699</em> $599</p>
+                        <button class="btn_5" onclick="addToCart('Acer',599,'/Assets/Image/acer.jpg')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/case1.png" alt="">
+                    <div class="product-txt">
+                        <h3>Pc Gamming</h3>
+                        <p><em>$3999</em> $3899</p>
+                        <button class="btn_5" onclick="addToCart('Pc Gamming',3899,'/Assets/Image/case1.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/case2.png" alt="">
+                    <div class="product-txt">
+                        <h3>Build PC</h3>
+                        <p><em>$3225</em> $3223</p>
+                        <button class="btn_5" onclick="addToCart('Build PC',3223,'/Assets/Image/case2.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/case3.jpg" alt="">
+                    <div class="product-txt">
+                        <h3>Case Gamming</h3>
+                        <p><em>$3599</em> $3499</p>
+                        <button class="btn_5" onclick="addToCart('Case Gamming',3499,'/Assets/Image/case3.jpg')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/case4.jpeg" alt="">
+                    <div class="product-txt">
+                        <h3>Pc Office</h3>
+                        <p><em>$1925</em> $1823</p>
+                        <button class="btn_5" onclick="addToCart('Pc Office',1823,'/Assets/Image/case4.jpeg')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/monitor.png" alt="">
+                    <div class="product-txt">
+                        <h3>MONITOR MSI</h3>
+                        <p><em>$299</em> $278</p>
+                        <button class="btn_5" onclick="addToCart('Monitor MSI',278,'/Assets/Image/monitor.png')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/rog-monitor.jpg" alt="">
+                    <div class="product-txt">
+                        <h3>Rog monitor</h3>
+                        <p><em>$399</em> $359</p>
+                        <button class="btn_5" onclick="addToCart('ROG Monitor',359,'/Assets/Image/rog-monitor.jpg')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section id="phone">
+        <div class="product-all" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-delay="200">
+            <div class="name-more">
+                <h2 id="phone">Phone</h2>
+                <a href="#">See More</a>
+            </div>
+            <div class="product-one">
+                <div class="product-box">
+                    <img src="/Assets/Image/iphone-17-pro-max-2-tb-orange-now-1.png" alt="">
+                    <div class="product-txt">
+                        <h3>IPhone 17</h3>
+                        <p><em>$4</em> $3</p>
+                        <button class="btn_5">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/16pro.png" alt="">
+                    <div class="product-txt">
+                        <h3>IPhone 16</h3>
+                        <p><em>$25</em> $23</p>
+                        <button class="btn_5">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/16plus.png" alt="">
+                    <div class="product-txt">
+                        <h3>Iphone 16+</h3>
+                        <p><em>$4</em> $3</p>
+                        <button class="btn_5">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/iPhone-15-Plus-Yellow.png" alt="">
+                    <div class="product-txt">
+                        <h3>Iphone 15</h3>
+                        <p><em>$25</em> $23</p>
+                        <button class="btn_5">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/Apple-iPhone-14-Pro-Max-6GB-128GB-Deep-Purple.png" alt="">
+                    <div class="product-txt">
+                        <h3>Iphone 14</h3>
+                        <p><em>$4</em> $3</p>
+                        <button class="btn_5">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/Samsung-Galaxy-S24-Ultra-1TB.jpg" alt="">
+                    <div class="product-txt">
+                        <h3>S24 Ultra</h3>
+                        <p><em>$25</em> $23</p>
+                        <button class="btn_5">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/Samsung-Galaxy-S23-Ultra.jpg" alt="">
+                    <div class="product-txt">
+                        <h3>S23 Ultra</h3>
+                        <p><em>$4</em> $3</p>
+                        <button class="btn_5">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/SAMSUNG-GALAXY-Z-FOLD-SPECIAL-EDITION-ALEZAY-KUWAIT-SAMSUNG-KUWAIT.png" alt="">
+                    <div class="product-txt">
+                        <h3>Z-FOLD</h3>
+                        <p><em>$25</em> $23</p>
+                        <button class="btn_5">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/oppo-purple.png" alt="">
+                    <div class="product-txt">
+                        <h3>RENO 13</h3>
+                        <p><em>$25</em> $23</p>
+                        <button class="btn_5">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/infinix.png" alt="">
+                    <div class="product-txt">
+                        <h3>Infinix</h3>
+                        <p><em>$4</em> $3</p>
+                        <button class="btn_5">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <div class="product-box">
+                    <img src="/Assets/Image/huawei-mate-xt-ultimate-red-official-image.jpg" alt="">
+                    <div class="product-txt">
+                        <h3>Huawei</h3>
+                        <p><em>$4</em> $3</p>
+                        <button class="btn_5">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <img src="/Assets/Image/google-pixel-9-pro.png" alt="">
+                    <div class="product-txt">
+                        <h3>Pixel 9</h3>
+                        <p><em>$25</em> $23</p>
+                        <button class="btn_5">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- <section id="about" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-delay="200">
+        <div class="about">
+            <div class="img-name">
+                <img src="/Assets/Image/infinity-logo.png" alt="">
+                
+            </div>
+            <div class="about-txt">
+                <h2>About <span>Infinity Store</span></h2>
+                <p style="margin-top: 20px; font-size: 25px; line-height: 1.6; text-align: justify;">
+                    Welcome to <span>Infinity Store</span>   your one-stop destination for everything you need! From delicious food and refreshing drinks to premium perfumes, high-performance laptops, the latest smartphones, and powerful speakers, we’ve got it all. At Infinity Store, we combine quality, style, and convenience to give you the best shopping experience possible. Whether you’re looking for tech, taste, or fragrance, Infinity Store is the place where infinite choices meet everyday comfort.
+                </p>
+            </div>
+        </div>
+    </section>  -->
+    <footer>
+        <div class="footer">
+            <div class="footer-box footer-1">
+                <h3>Quick Links</h3>
+                <a href="#home">Home</a>
+                <a href="#product">Products</a>
+                <a href="#about">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-box footer-1">
+                <h3>Follow Us</h3>
+                <a href="https://web.facebook.com/Thean7IsYourGod"><i class='bx bxl-facebook'></i> Facebook</a>
+                <a href="https://www.instagram.com/theanisyourgod?igsh=ajR4b2xsZDNqcXEw"><i class='bx bxl-instagram'></i> Instagram</a>
+                <a href=""><i class='bx bxl-tiktok'></i> Tik Tok</a>
+                <a href="https://t.me/theavithean"><i class="bx bxl-telegram"></i> Telegram</a>
+            </div>
+            <div class="footer-box ">
+                <h3>Contact Info</h3>
+                <a href="tel:+855 977 625 939"><i class='bx bxs-phone'></i> +855 977 625 939</a>
+                <a href="tel:+855 967 625 939"><i class='bx bxs-phone'></i> +855 967 625 939</a>
+                <a href="mailto:theavithean939@gmail.com"><i class='bx bxs-envelope'></i> theavithean939@gmail.com</a>
+                <p>@2025 | All Right Reversed!</p>
+            </div>
+        </div>
+    </footer>
+</body>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://unpkg.com/scrollreveal"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script>
+        AOS.init({
+            duration: 1000,   // animation duration (in ms)
+            once: true        // whether animation should happen only once
+        });
+        ScrollReveal().reveal('.headline');
+
+        function toggleMenu() {
+            const navbar = document.getElementById('navbar');
+            navbar.classList.toggle('active');
+        }
+        if (window.innerWidth < 768) {
+    document.querySelectorAll('[data-aos]').forEach(el => {
+      el.removeAttribute('data-aos');
+      el.removeAttribute('data-aos-anchor-placement');
+    });
+  } else {
+    AOS.init(); // Run AOS only on larger screens
+  }
+    </script>
+    <script src="script.js"></script>
+</html>
